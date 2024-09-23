@@ -1,0 +1,17 @@
+name: CI Pipeline
+
+on: # on: push: Indica que este workflow se ejecutará en cada push a la rama main.
+  push:
+    branches:
+      - main
+
+jobs: #jobs: Define el trabajo que queremos ejecutar, en este caso, simplemente ejecuta un comando echo "Hello World".
+  hello_world:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Say Hello
+        run: echo "Hello World"
