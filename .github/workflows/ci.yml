@@ -1,3 +1,5 @@
+# .github/workflows/ci.yml
+
 name: Node.js CI
 
 on:
@@ -12,21 +14,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
     steps:
-      # Check out the repository code
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Set up Node.js environment
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      # Install dependencies
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      # Run tests
-      - name: Run tests
-        run: npm test
+    - name: Run ESLint
+      run: npm run lint
+
+    - name: Run tests
+      run: npx mocha
