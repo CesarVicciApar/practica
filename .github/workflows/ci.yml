@@ -1,40 +1,23 @@
-# .github/workflows/ci.yml
-
-name: Node.js CI
-
+name: CI Example
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install Lint
-      run: npm install eslint
-
-    - name: Run ESLint
-      run: npm run lint
-
-    - name: Run tests
-      run: npm run test  # Ejecutar las pruebas de Mocha
+      - name: Run tests
+        run: npm test
