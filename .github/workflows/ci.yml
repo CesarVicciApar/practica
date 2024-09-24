@@ -30,6 +30,9 @@ jobs:
       run: npm install
       # Instala todas las dependencias definidas en package.json
 
+    - name: Fix permissions for jest
+      run: chmod +x node_modules/.bin/jest
+
     # 4. Correr los tests
     - name: Run tests
       run: npm test
