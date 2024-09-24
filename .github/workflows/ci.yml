@@ -23,3 +23,7 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+      

@@ -6,8 +6,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest"
-  },
+  "test": "node_modules/.bin/jest"
+}
+,
   "keywords": [],
   "author": "",
   "license": "ISC",
