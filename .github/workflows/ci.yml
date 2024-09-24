@@ -1,30 +1,42 @@
 name: CI
 
-on:
+# Disparadores: este workflow se ejecutará en push y pull request a la rama main
+on: 
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Corre el job en un contenedor con Ubuntu
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # 1. Configuración del entorno
+    - name: Checkout code
+      uses: actions/checkout@v2
+      # Se clona el código del repositorio en el entorno de CI
+    
+    # 2. Configurar Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Especifica la versión de Node.js que deseas usar
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    # 3. Instalar Dependencias
+    - name: Install dependencies
+      run: npm install
+      # Instala todas las dependencias definidas en package.json
 
-      - name: Install dependencies
-        run: npm install
+    # 4. Correr los tests
+    - name: Run tests
+      run: npm test
+      # Se ejecutan los tests definidos en el script de package.json ("test": "jest")
 
-      - name: Run tests
-        run: npm test
-
-      - name: Grant execution permissions to jest
-        run: chmod +x ./node_modules/.bin/jest
-      
-      
+    # 5. Generar reporte de coverage (opcional)
+    # Si usas coverage con Jest, agrega estos pasos adicionales
+    # - name: Generate coverage report
+    #   run: npm run coverage
+    #   # Genera un reporte de cobertura si es necesario

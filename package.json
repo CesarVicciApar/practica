@@ -1,17 +1,17 @@
 {
   "name": "practica",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "directories": {
-    "test": "jest"
-  },
   "scripts": {
     "test": "jest"
+  },
+  "directories": {
+    "test": "test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "jest": "^29.7.0"
   }
