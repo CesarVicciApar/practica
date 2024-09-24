@@ -6,7 +6,7 @@
     "test": "jest"
   },
   "scripts": {
-    "test": "node_modules/.bin/jest"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
