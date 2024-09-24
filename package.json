@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
-    "test": "test"
+    "test": "jest"
   },
   "scripts": {
-  "test": "node_modules/.bin/jest"
-}
-,
+    "test": "node_modules/.bin/jest"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

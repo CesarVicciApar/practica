@@ -24,6 +24,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Clean npm cache
-        run: npm cache clean --force
+      - name: Grant execution permissions to jest
+        run: chmod +x ./node_modules/.bin/jest
+      
       
