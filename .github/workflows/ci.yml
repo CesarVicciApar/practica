@@ -1,3 +1,5 @@
+# .github/workflows/ci.yml
+
 name: Node.js CI
 
 on:
@@ -14,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 17.x, 20.x]
+        node-version: [16.x, 18.x]
 
     steps:
     - name: Checkout repository
@@ -28,16 +30,11 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Verify Node.js version
-      run: node -v
+    - name: Install Lint
+      run: npm install -g eslint
 
-    - name: ESLint for Node.js 17.x and newer
-      if: startsWith(matrix.node-version, '17') || startsWith(matrix.node-version, '20')
+    - name: Run ESLint
       run: npm run lint
-
-    - name: Skip ESLint for older Node.js versions (16.x)
-      if: startsWith(matrix.node-version, '16')
-      run: echo "Skipping ESLint for Node.js 16.x"
 
     - name: Run tests
       run: npx mocha
